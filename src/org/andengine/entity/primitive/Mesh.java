@@ -155,6 +155,23 @@ public class Mesh extends Shape {
 	// Methods
 	// ===========================================================
 
+	protected static float[] buildVertexList(float[] pVertexX, float[] pVertexY)
+	{
+		assert( pVertexX.length == pVertexY.length );
+
+		float[] bufferData = new float[VERTEX_SIZE * pVertexX.length];
+		updateVertexList(pVertexX, pVertexY, bufferData);
+		return bufferData;
+	}
+
+	protected static void updateVertexList(float[] pVertexX, float[] pVertexY, float[] pBufferData)
+	{
+		for( int i = 0; i < pVertexX.length; i++)
+		{
+			pBufferData[(i * Mesh.VERTEX_SIZE) + Mesh.VERTEX_INDEX_X] = pVertexX[i];
+			pBufferData[(i * Mesh.VERTEX_SIZE) + Mesh.VERTEX_INDEX_Y] = pVertexY[i];
+		}
+	}
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
