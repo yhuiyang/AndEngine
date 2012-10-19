@@ -213,7 +213,11 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	}
 
 	public void setScene(final Scene pScene) {
+		if (this.mScene != null)
+			this.mScene.onDetached();
 		this.mScene = pScene;
+		if (this.mScene != null)
+			this.mScene.onAttached();
 	}
 
 	public EngineOptions getEngineOptions() {
