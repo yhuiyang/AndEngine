@@ -229,7 +229,8 @@ public class Font implements IFont {
 			}
 
 			if ((this.mCurrentTextureY + letterHeight) >= textureHeight) {
-				throw new FontException("Not enough space for " + Letter.class.getSimpleName() + ": '" + pCharacter + "' on the " + this.mTexture.getClass().getSimpleName() + ". Existing Letters: " + SparseArrayUtils.toString(this.mManagedCharacterToLetterMap));
+				final int y = this.mCurrentTextureY + letterHeight;
+				throw new FontException("Not enough space(change y to >" + y + ") for " + Letter.class.getSimpleName() + ": '" + pCharacter + "' on the " + this.mTexture.getClass().getSimpleName() + ". Existing Letters: " + SparseArrayUtils.toString(this.mManagedCharacterToLetterMap));
 			}
 
 			this.mCurrentTextureYHeightMax = Math.max(letterHeight, this.mCurrentTextureYHeightMax);
