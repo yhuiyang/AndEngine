@@ -8,7 +8,7 @@ import org.andengine.opengl.util.GLState;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 14:55:02 - 08.03.2010
  */
@@ -140,7 +140,7 @@ public abstract class Texture implements ITexture {
 
 		this.mUpdateOnHardwareNeeded = false;
 
-		if(this.mTextureStateListener != null) {
+		if (this.mTextureStateListener != null) {
 			this.mTextureStateListener.onLoadedToHardware(this);
 		}
 	}
@@ -151,7 +151,7 @@ public abstract class Texture implements ITexture {
 
 		this.mHardwareTextureID = Texture.HARDWARE_TEXTURE_ID_INVALID;
 
-		if(this.mTextureStateListener != null) {
+		if (this.mTextureStateListener != null) {
 			this.mTextureStateListener.onUnloadedFromHardware(this);
 		}
 	}

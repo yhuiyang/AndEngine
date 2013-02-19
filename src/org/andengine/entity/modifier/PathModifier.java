@@ -7,12 +7,10 @@ import org.andengine.util.modifier.SequenceModifier.ISubSequenceModifierListener
 import org.andengine.util.modifier.ease.EaseLinear;
 import org.andengine.util.modifier.ease.IEaseFunction;
 
-import android.util.FloatMath;
-
 /**
- * (c) 2010 Nicolas Gramlich 
+ * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 16:50:02 - 16.06.2010
  */
@@ -82,7 +80,7 @@ public class PathModifier extends EntityModifier {
 		final float velocity = pPath.getLength() / pDuration;
 
 		final int modifierCount = moveModifiers.length;
-		for(int i = 0; i < modifierCount; i++) {
+		for (int i = 0; i < modifierCount; i++) {
 			final float duration = pPath.getSegmentLength(i) / velocity;
 			moveModifiers[i] = new MoveModifier(duration, coordinatesX[i], coordinatesY[i], coordinatesX[i + 1], coordinatesY[i + 1], null, pEaseFunction);
 		}
@@ -93,14 +91,14 @@ public class PathModifier extends EntityModifier {
 				new ISubSequenceModifierListener<IEntity>() {
 					@Override
 					public void onSubSequenceStarted(final IModifier<IEntity> pModifier, final IEntity pEntity, final int pIndex) {
-						if(PathModifier.this.mPathModifierListener != null) {
+						if (PathModifier.this.mPathModifierListener != null) {
 							PathModifier.this.mPathModifierListener.onPathWaypointStarted(PathModifier.this, pEntity, pIndex);
 						}
 					}
 
 					@Override
 					public void onSubSequenceFinished(final IModifier<IEntity> pEntityModifier, final IEntity pEntity, final int pIndex) {
-						if(PathModifier.this.mPathModifierListener != null) {
+						if (PathModifier.this.mPathModifierListener != null) {
 							PathModifier.this.mPathModifierListener.onPathWaypointFinished(PathModifier.this, pEntity, pIndex);
 						}
 					}
@@ -109,7 +107,7 @@ public class PathModifier extends EntityModifier {
 					@Override
 					public void onModifierStarted(final IModifier<IEntity> pModifier, final IEntity pEntity) {
 						PathModifier.this.onModifierStarted(pEntity);
-						if(PathModifier.this.mPathModifierListener != null) {
+						if (PathModifier.this.mPathModifierListener != null) {
 							PathModifier.this.mPathModifierListener.onPathStarted(PathModifier.this, pEntity);
 						}
 					}
@@ -117,7 +115,7 @@ public class PathModifier extends EntityModifier {
 					@Override
 					public void onModifierFinished(final IModifier<IEntity> pEntityModifier, final IEntity pEntity) {
 						PathModifier.this.onModifierFinished(pEntity);
-						if(PathModifier.this.mPathModifierListener != null) {
+						if (PathModifier.this.mPathModifierListener != null) {
 							PathModifier.this.mPathModifierListener.onPathFinished(PathModifier.this, pEntity);
 						}
 					}
@@ -301,7 +299,7 @@ public class PathModifier extends EntityModifier {
 		}
 
 		public float getLength() {
-			if(this.mLengthChanged) {
+			if (this.mLengthChanged) {
 				this.updateLength();
 			}
 			return this.mLength;
@@ -316,7 +314,7 @@ public class PathModifier extends EntityModifier {
 			final float dx = coordinatesX[pSegmentIndex] - coordinatesX[nextSegmentIndex];
 			final float dy = coordinatesY[pSegmentIndex] - coordinatesY[nextSegmentIndex];
 
-			return FloatMath.sqrt(dx * dx + dy * dy);
+			return (float)Math.sqrt(dx * dx + dy * dy);
 		}
 
 		// ===========================================================
@@ -330,7 +328,7 @@ public class PathModifier extends EntityModifier {
 		private void updateLength() {
 			float length = 0.0f;
 
-			for(int i = this.mIndex - 2; i >= 0; i--) {
+			for (int i = this.mIndex - 2; i >= 0; i--) {
 				length += this.getSegmentLength(i);
 			}
 			this.mLength = length;

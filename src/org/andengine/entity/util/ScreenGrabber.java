@@ -12,9 +12,9 @@ import android.graphics.Bitmap.Config;
 import android.opengl.GLES20;
 
 /**
- * (c) 2010 Nicolas Gramlich 
+ * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 15:27:22 - 10.01.2011
  */
@@ -49,7 +49,7 @@ public class ScreenGrabber extends Entity {
 
 	@Override
 	protected void onManagedDraw(final GLState pGLState, final Camera pCamera) {
-		if(this.mScreenGrabPending) {
+		if (this.mScreenGrabPending) {
 			try {
 				final Bitmap screenGrab = ScreenGrabber.grab(this.mGrabX, this.mGrabY, this.mGrabWidth, this.mGrabHeight);
 

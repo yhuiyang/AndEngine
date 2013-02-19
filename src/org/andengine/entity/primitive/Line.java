@@ -21,7 +21,7 @@ import android.opengl.GLES20;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 09:50:36 - 04.04.2010
  */
@@ -286,7 +286,7 @@ public class Line extends Shape {
 
 	@Override
 	public boolean collidesWith(final IEntity pOtherEntity) {
-		if(pOtherEntity instanceof Line) {
+		if (pOtherEntity instanceof Line) {
 			final Line otherLine = (Line) pOtherEntity;
 			return LineCollisionChecker.checkLineCollision(this.mX, this.mY, this.mX2, this.mY2, otherLine.mX, otherLine.mY, otherLine.mX2, otherLine.mY2);
 		} else {

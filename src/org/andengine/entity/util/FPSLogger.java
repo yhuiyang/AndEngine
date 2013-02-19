@@ -8,7 +8,7 @@ import org.andengine.util.time.TimeConstants;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 19:52:31 - 09.03.2010
  */
@@ -87,7 +87,7 @@ public class FPSLogger extends AverageFPSCounter {
 	// ===========================================================
 
 	protected void onLogFPS() {
-		if(BuildConfig.DEBUG) {
+		if (BuildConfig.DEBUG) {
 			Debug.log(this.mDebugLevel, String.format("FPS: %.2f (MIN: %.0f ms | MAX: %.0f ms)",
 				this.mFrames / this.mSecondsElapsed,
 				this.mShortestFrame * TimeConstants.MILLISECONDS_PER_SECOND,

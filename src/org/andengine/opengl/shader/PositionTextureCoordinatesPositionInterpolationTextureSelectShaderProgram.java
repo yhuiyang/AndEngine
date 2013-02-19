@@ -55,7 +55,7 @@ public class PositionTextureCoordinatesPositionInterpolationTextureSelectShaderP
 	}
 
 	public static PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram getInstance() {
-		if(PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.INSTANCE == null) {
+		if (PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.INSTANCE == null) {
 			PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.INSTANCE = new PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram();
 		}
 		return PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.INSTANCE;
@@ -104,7 +104,7 @@ public class PositionTextureCoordinatesPositionInterpolationTextureSelectShaderP
 		GLES20.glEnableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION);
 		GLES20.glDisableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_POSITION_0_LOCATION);
 		GLES20.glDisableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_POSITION_1_LOCATION);
-		
+
 		super.unbind(pGLState);
 	}
 

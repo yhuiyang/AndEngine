@@ -12,7 +12,7 @@ import org.andengine.util.modifier.ease.IEaseFunction;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 11:04:35 - 02.04.2010
  */
@@ -127,7 +127,7 @@ public class SlideMenuSceneAnimator extends MenuSceneAnimator {
 	// ===========================================================
 
 	protected float getFromX(final MenuScene pMenuScene, final IMenuItem pMenuItem, final float pX) {
-		switch(this.mDirection) {
+		switch (this.mDirection) {
 			case UP:
 			case DOWN:
 				return pX;
@@ -145,7 +145,7 @@ public class SlideMenuSceneAnimator extends MenuSceneAnimator {
 	}
 
 	protected float getFromY(final MenuScene pMenuScene, final IMenuItem pMenuItem, final float pY) {
-		switch(this.mDirection) {
+		switch (this.mDirection) {
 			case DOWN_LEFT:
 			case DOWN:
 			case DOWN_RIGHT:

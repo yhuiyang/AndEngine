@@ -17,7 +17,7 @@ import android.view.MotionEvent;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 10:43:09 - 11.07.2010
  */
@@ -101,10 +101,10 @@ public abstract class BaseOnScreenControl extends HUD implements IOnSceneTouchLi
 	@Override
 	public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 		final int pointerID = pSceneTouchEvent.getPointerID();
-		if(pointerID == this.mActivePointerID) {
+		if (pointerID == this.mActivePointerID) {
 			this.onHandleControlBaseLeft();
 
-			switch(pSceneTouchEvent.getAction()) {
+			switch (pSceneTouchEvent.getAction()) {
 				case MotionEvent.ACTION_UP:
 				case MotionEvent.ACTION_CANCEL:
 					this.mActivePointerID = BaseOnScreenControl.INVALID_POINTER_ID;
@@ -138,9 +138,9 @@ public abstract class BaseOnScreenControl extends HUD implements IOnSceneTouchLi
 	protected boolean onHandleControlBaseTouched(final TouchEvent pSceneTouchEvent, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
 		final int pointerID = pSceneTouchEvent.getPointerID();
 
-		switch(pSceneTouchEvent.getAction()) {
+		switch (pSceneTouchEvent.getAction()) {
 			case MotionEvent.ACTION_DOWN:
-				if(this.mActivePointerID == BaseOnScreenControl.INVALID_POINTER_ID) {
+				if (this.mActivePointerID == BaseOnScreenControl.INVALID_POINTER_ID) {
 					this.mActivePointerID = pointerID;
 					this.updateControlKnob(pTouchAreaLocalX, pTouchAreaLocalY);
 					return true;
@@ -148,14 +148,14 @@ public abstract class BaseOnScreenControl extends HUD implements IOnSceneTouchLi
 				break;
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_CANCEL:
-				if(this.mActivePointerID == pointerID) {
+				if (this.mActivePointerID == pointerID) {
 					this.mActivePointerID = BaseOnScreenControl.INVALID_POINTER_ID;
 					this.onHandleControlKnobReleased();
 					return true;
 				}
 				break;
 			default:
-				if(this.mActivePointerID == pointerID) {
+				if (this.mActivePointerID == pointerID) {
 					this.updateControlKnob(pTouchAreaLocalX, pTouchAreaLocalY);
 					return true;
 				}

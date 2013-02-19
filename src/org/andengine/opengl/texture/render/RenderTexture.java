@@ -20,7 +20,7 @@ import android.graphics.Bitmap.Config;
 import android.opengl.GLES20;
 
 /**
- * The general workflow with a {@link RenderTexture} is: {@link RenderTexture#init(GLState)} -> {@link RenderTexture#begin(GLState)} -> {@link RenderTexture#end(GLState)} -> {@link RenderTexture#destroy(GLState)}. 
+ * The general workflow with a {@link RenderTexture} is: {@link RenderTexture#init(GLState)} -> {@link RenderTexture#begin(GLState)} -> {@link RenderTexture#end(GLState)} -> {@link RenderTexture#destroy(GLState)}.
  *
  * (c) Zynga 2011
  *
@@ -235,14 +235,14 @@ public class RenderTexture extends Texture {
 		final float right;
 		final float bottom;
 		final float top;
-		if(pFlipX) {
+		if (pFlipX) {
 			left = this.mWidth;
 			right = 0;
 		} else {
 			left = 0;
 			right = this.mWidth;
 		}
-		if(pFlipY) {
+		if (pFlipY) {
 			top = 0;
 			bottom = this.mHeight;
 		} else {
@@ -288,7 +288,7 @@ public class RenderTexture extends Texture {
 	 * @param pGLState
 	 * @param pFlush {@link GLState#flush()} has lower preference than pFinish.
 	 * @param pFinish {@link GLState#finish()} had higher preference than pFlush.
-	 * 
+	 *
 	 * @see {@link RenderTexture#begin(GLState)},
 	 * 		{@link RenderTexture#begin(GLState, boolean, boolean)},
 	 * 		{@link RenderTexture#begin(GLState, Color)},
@@ -297,9 +297,9 @@ public class RenderTexture extends Texture {
 	 * 		{@link RenderTexture#begin(GLState, boolean, boolean, float, float, float, float)}.
 	 */
 	public void end(final GLState pGLState, final boolean pFlush, final boolean pFinish) {
-		if(pFinish) {
+		if (pFinish) {
 			this.finish(pGLState);
-		} else if(pFlush) {
+		} else if (pFlush) {
 			this.flush(pGLState);
 		}
 
@@ -362,7 +362,7 @@ public class RenderTexture extends Texture {
 	}
 
 	public Bitmap getBitmap(final GLState pGLState, final int pX, final int pY, final int pWidth, final int pHeight) {
-		if(this.mPixelFormat != PixelFormat.RGBA_8888) {
+		if (this.mPixelFormat != PixelFormat.RGBA_8888) {
 			throw new IllegalStateException("Currently only 'PixelFormat." + PixelFormat.RGBA_8888 + "' is supported to be retrieved as a Bitmap.");
 		}
 

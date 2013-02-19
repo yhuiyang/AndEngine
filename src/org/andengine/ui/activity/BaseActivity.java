@@ -12,9 +12,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 /**
- * (c) 2010 Nicolas Gramlich 
+ * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 18:35:28 - 29.08.2009
  */
@@ -48,7 +48,7 @@ public abstract class BaseActivity extends Activity {
 	}
 
 	public void toastOnUiThread(final CharSequence pText, final int pDuration) {
-		if(ActivityUtils.isOnUiThread()) {
+		if (ActivityUtils.isOnUiThread()) {
 			Toast.makeText(BaseActivity.this, pText, pDuration).show();
 		} else {
 			this.runOnUiThread(new Runnable() {
@@ -67,7 +67,7 @@ public abstract class BaseActivity extends Activity {
 
 	@Deprecated
 	public void showDialogOnUiThread(final int pDialogID, final Bundle pBundle) {
-		if(ActivityUtils.isOnUiThread()) {
+		if (ActivityUtils.isOnUiThread()) {
 			this.showDialog(pDialogID, pBundle);
 		} else {
 			this.runOnUiThread(new Runnable() {
@@ -82,7 +82,7 @@ public abstract class BaseActivity extends Activity {
 	/**
 	 * Performs a task in the background, showing a {@link ProgressDialog},
 	 * while the {@link Callable} is being processed.
-	 * 
+	 *
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID
@@ -97,7 +97,7 @@ public abstract class BaseActivity extends Activity {
 	/**
 	 * Performs a task in the background, showing a indeterminate {@link ProgressDialog},
 	 * while the {@link Callable} is being processed.
-	 * 
+	 *
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID
@@ -113,7 +113,7 @@ public abstract class BaseActivity extends Activity {
 	/**
 	 * Performs a task in the background, showing a {@link ProgressDialog} with an ProgressBar,
 	 * while the {@link AsyncCallable} is being processed.
-	 * 
+	 *
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID
@@ -128,7 +128,7 @@ public abstract class BaseActivity extends Activity {
 	/**
 	 * Performs a task in the background, showing a {@link ProgressDialog} with a ProgressBar,
 	 * while the {@link AsyncCallable} is being processed.
-	 * 
+	 *
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID
@@ -144,7 +144,7 @@ public abstract class BaseActivity extends Activity {
 	/**
 	 * Performs a task in the background, showing an indeterminate {@link ProgressDialog},
 	 * while the {@link AsyncCallable} is being processed.
-	 * 
+	 *
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID

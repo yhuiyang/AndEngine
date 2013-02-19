@@ -14,7 +14,7 @@ import android.opengl.GLSurfaceView;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 11:57:29 - 08.03.2010
  */
@@ -76,7 +76,7 @@ public class EngineRenderer implements GLSurfaceView.Renderer {
 //			GLES20.glFrontFace(GLES20.GL_CCW);
 //			GLES20.glCullFace(GLES20.GL_BACK);
 
-			if(this.mRendererListener != null) {
+			if (this.mRendererListener != null) {
 				this.mRendererListener.onSurfaceCreated(this.mGLState);
 			}
 		}
@@ -88,7 +88,7 @@ public class EngineRenderer implements GLSurfaceView.Renderer {
 		GLES20.glViewport(0, 0, pWidth, pHeight);
 		this.mGLState.loadProjectionGLMatrixIdentity();
 
-		if(this.mRendererListener != null) {
+		if (this.mRendererListener != null) {
 			this.mRendererListener.onSurfaceChanged(this.mGLState, pWidth, pHeight);
 		}
 	}

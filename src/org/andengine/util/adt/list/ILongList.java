@@ -16,10 +16,10 @@ public interface ILongList {
 	// ===========================================================
 
 	public boolean isEmpty();
-	public float get(final int pIndex) throws ArrayIndexOutOfBoundsException;
+	public long get(final int pIndex) throws ArrayIndexOutOfBoundsException;
 	public void add(final long pItem);
 	public void add(final int pIndex, final long pItem) throws ArrayIndexOutOfBoundsException;
-	public float remove(final int pIndex) throws ArrayIndexOutOfBoundsException;
+	public long remove(final int pIndex) throws ArrayIndexOutOfBoundsException;
 	public int size();
 	public void clear();
 	public long[] toArray();

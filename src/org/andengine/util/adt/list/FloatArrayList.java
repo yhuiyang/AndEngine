@@ -75,7 +75,7 @@ public class FloatArrayList implements IFloatList {
 		final float oldValue = this.mItems[pIndex];
 
 		final int numMoved = this.mSize - pIndex - 1;
-		if(numMoved > 0) {
+		if (numMoved > 0) {
 			System.arraycopy(this.mItems, pIndex + 1, this.mItems, pIndex, numMoved);
 		}
 
@@ -98,7 +98,7 @@ public class FloatArrayList implements IFloatList {
 	public float[] toArray() {
 		final float[] array = new float[this.mSize];
 		System.arraycopy(this.mItems, 0, array, 0, this.mSize);
-		return array ;
+		return array;
 	}
 
 	// ===========================================================
@@ -107,10 +107,10 @@ public class FloatArrayList implements IFloatList {
 
 	private void ensureCapacity(final int pCapacity) {
 		final int currentCapacity = this.mItems.length;
-		if(currentCapacity < pCapacity) {
+		if (currentCapacity < pCapacity) {
 			/* Increase array size. */
 			final int newCapacity = ((currentCapacity * 3) >> 1) + 1;
-			final float newItems[] = new float[newCapacity];
+			final float[] newItems = new float[newCapacity];
 			System.arraycopy(this.mItems, 0, newItems, 0, currentCapacity);
 			this.mItems = newItems;
 		}

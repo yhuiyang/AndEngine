@@ -6,9 +6,9 @@ import org.andengine.entity.IEntity;
 import org.andengine.entity.particle.Particle;
 
 /**
- * (c) 2010 Nicolas Gramlich 
+ * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 21:21:10 - 14.03.2010
  */
@@ -50,7 +50,7 @@ public class OffCameraExpireParticleModifier<T extends IEntity> implements IPart
 
 	@Override
 	public void onUpdateParticle(final Particle<T> pParticle) {
-		if(!this.mCamera.isEntityVisible(pParticle.getEntity())) {
+		if (!this.mCamera.isEntityVisible(pParticle.getEntity())) {
 			pParticle.setExpired(true);
 		}
 	}

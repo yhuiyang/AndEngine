@@ -2,12 +2,10 @@ package org.andengine.util.math;
 
 import java.util.Random;
 
-import android.util.FloatMath;
-
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 20:42:15 - 17.12.2009
  */
@@ -195,9 +193,9 @@ public final class MathUtils {
 	}
 
 	public static final int signum(final int n) {
-		if(n == 0) {
+		if (n == 0) {
 			return 0;
-		} else if(n > 0) {
+		} else if (n > 0) {
 			return 1;
 		} else {
 			return -1;
@@ -205,7 +203,7 @@ public final class MathUtils {
 	}
 
 	public static final int randomSign() {
-		if(MathUtils.RANDOM.nextBoolean()) {
+		if (MathUtils.RANDOM.nextBoolean()) {
 			return 1;
 		} else {
 			return -1;
@@ -230,7 +228,7 @@ public final class MathUtils {
 	}
 
 	public static final int nextPowerOfTwo(final float f) {
-		return MathUtils.nextPowerOfTwo((int)(FloatMath.ceil(f)));
+		return MathUtils.nextPowerOfTwo((int)(Math.ceil(f)));
 	}
 
 	public static final int nextPowerOfTwo(final int n) {
@@ -251,7 +249,7 @@ public final class MathUtils {
 
 	public static final int sum(final int[] pValues) {
 		int sum = 0;
-		for(int i = pValues.length - 1; i >= 0; i--) {
+		for (int i = pValues.length - 1; i >= 0; i--) {
 			sum += pValues[i];
 		}
 
@@ -259,12 +257,12 @@ public final class MathUtils {
 	}
 
 	public static float[] rotateAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY) {
-		if(pRotation != 0) {
+		if (pRotation != 0) {
 			final float rotationRad = MathUtils.degToRad(pRotation);
-			final float sinRotationRad = FloatMath.sin(rotationRad);
-			final float cosRotationInRad = FloatMath.cos(rotationRad);
+			final float sinRotationRad = (float)Math.sin(rotationRad);
+			final float cosRotationInRad = (float)Math.cos(rotationRad);
 
-			for(int i = pVertices.length - 2; i >= 0; i -= 2) {
+			for (int i = pVertices.length - 2; i >= 0; i -= 2) {
 				final float pX = pVertices[i];
 				final float pY = pVertices[i + 1];
 				pVertices[i] = pRotationCenterX + ((cosRotationInRad * (pX - pRotationCenterX)) - (sinRotationRad * (pY - pRotationCenterY)));
@@ -275,8 +273,8 @@ public final class MathUtils {
 	}
 
 	public static float[] scaleAroundCenter(final float[] pVertices, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
-		if((pScaleX != 1) || (pScaleY != 1)) {
-			for(int i = pVertices.length - 2; i >= 0; i -= 2) {
+		if ((pScaleX != 1) || (pScaleY != 1)) {
+			for (int i = pVertices.length - 2; i >= 0; i -= 2) {
 				pVertices[i] = pScaleCenterX + ((pVertices[i] - pScaleCenterX) * pScaleX);
 				pVertices[i + 1] = pScaleCenterY + ((pVertices[i + 1] - pScaleCenterY) * pScaleY);
 			}
@@ -334,17 +332,17 @@ public final class MathUtils {
 	/**
 	 * @return the euclidean distance between the points (pX1, pY1) and (pX2, pY2).
 	 */
-	public static final float distance(final float pX1, final float pY1, final float pX2, final float pY2){
+	public static final float distance(final float pX1, final float pY1, final float pX2, final float pY2) {
 		final float dX = pX2 - pX1;
 		final float dY = pY2 - pY1;
-		return FloatMath.sqrt((dX * dX) + (dY * dY));
+		return (float)Math.sqrt((dX * dX) + (dY * dY));
 	}
 
 	/**
 	 * @return the euclidean distance between the origin (0, 0) and (pX, pY).
 	 */
-	public static final float length(final float pX, final float pY){
-		return FloatMath.sqrt((pX * pX) + (pY * pY));
+	public static final float length(final float pX, final float pY) {
+		return (float)Math.sqrt((pX * pX) + (pY * pY));
 	}
 
 	/**

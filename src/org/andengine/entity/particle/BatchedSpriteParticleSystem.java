@@ -33,7 +33,7 @@ public class BatchedSpriteParticleSystem extends BlendFunctionParticleSystem<Unc
 	// ===========================================================
 
 	public BatchedSpriteParticleSystem(final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
-		this(0, 0, pParticleEmitter, pRateMinimum, pRateMaximum, pParticlesMaximum, pTextureRegion, pVertexBufferObjectManager); 
+		this(0, 0, pParticleEmitter, pRateMinimum, pRateMaximum, pParticlesMaximum, pTextureRegion, pVertexBufferObjectManager);
 	}
 
 	public BatchedSpriteParticleSystem(final float pX, final float pY, final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
@@ -61,7 +61,7 @@ public class BatchedSpriteParticleSystem extends BlendFunctionParticleSystem<Unc
 		this.mSpriteBatch.setIndex(0);
 
 		final Particle<UncoloredSprite>[] particles = this.mParticles;
-		for(int i = this.mParticlesAlive - 1; i >= 0; i--) {
+		for (int i = this.mParticlesAlive - 1; i >= 0; i--) {
 			final Sprite sprite = particles[i].getEntity();
 
 			/* In order to support alpha changes of the sprites inside the spritebatch,

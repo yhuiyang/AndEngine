@@ -8,9 +8,9 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 
 /**
- * (c) 2010 Nicolas Gramlich 
+ * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 14:23:03 - 11.03.2010
  */
@@ -37,7 +37,7 @@ public class SoundFactory {
 	 * @param pAssetBasePath must end with '<code>/</code>' or have <code>.length() == 0</code>.
 	 */
 	public static void setAssetBasePath(final String pAssetBasePath) {
-		if(pAssetBasePath.endsWith("/") || pAssetBasePath.length() == 0) {
+		if (pAssetBasePath.endsWith("/") || pAssetBasePath.length() == 0) {
 			SoundFactory.sAssetBasePath = pAssetBasePath;
 		} else {
 			throw new IllegalStateException("pAssetBasePath must end with '/' or be lenght zero.");

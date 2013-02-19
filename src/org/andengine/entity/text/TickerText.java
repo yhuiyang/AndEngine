@@ -12,7 +12,7 @@ import android.opengl.GLES20;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 10:02:04 - 05.05.2010
  */
@@ -79,7 +79,7 @@ public class TickerText extends Text {
 	public void setText(CharSequence pText) throws OutOfCharactersException {
 		super.setText(pText);
 
-		if(this.mTickerTextOptions != null) {
+		if (this.mTickerTextOptions != null) {
 			this.mDuration = this.mCharactersToDraw * this.mTickerTextOptions.mCharactersPerSecond;
 		}
 	}
@@ -92,13 +92,13 @@ public class TickerText extends Text {
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 
-		if(this.mTickerTextOptions.mReverse) {
-			if(this.mCharactersVisible < this.mCharactersToDraw) {
+		if (this.mTickerTextOptions.mReverse) {
+			if (this.mCharactersVisible < this.mCharactersToDraw) {
 				this.mSecondsElapsed = Math.max(0, this.mSecondsElapsed - pSecondsElapsed);
 				this.mCharactersVisible = (int) (this.mSecondsElapsed * this.mTickerTextOptions.mCharactersPerSecond);
 			}
 		} else {
-			if(this.mCharactersVisible < this.mCharactersToDraw) {
+			if (this.mCharactersVisible < this.mCharactersToDraw) {
 				this.mSecondsElapsed = Math.min(this.mDuration, this.mSecondsElapsed + pSecondsElapsed);
 				this.mCharactersVisible = (int) (this.mSecondsElapsed * this.mTickerTextOptions.mCharactersPerSecond);
 			}

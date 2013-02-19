@@ -3,17 +3,19 @@ package org.andengine.util.level;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.andengine.BuildConfig;
 import org.andengine.entity.IEntity;
 import org.andengine.util.adt.list.SmartList;
+import org.andengine.util.debug.Debug;
 import org.andengine.util.level.exception.LevelLoaderException;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * (c) 2010 Nicolas Gramlich 
+ * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 14:35:32 - 11.10.2010
  */
@@ -67,8 +69,8 @@ public abstract class LevelLoaderContentHandler<T extends IEntityLoaderData, L e
 		final IEntity parent = (this.mParentEntityStack.isEmpty()) ? null : this.mParentEntityStack.getLast();
 
 		IEntityLoader<T> entityLoader = this.mEntityLoaders.get(entityName);
-		if(entityLoader == null) {
-			if(this.mDefaultEntityLoader == null) {
+		if (entityLoader == null) {
+			if (this.mDefaultEntityLoader == null) {
 				throw new LevelLoaderException("Unexpected tag: '" + entityName + "'.");
 			} else {
 				entityLoader = this.mDefaultEntityLoader;
@@ -82,18 +84,22 @@ public abstract class LevelLoaderContentHandler<T extends IEntityLoaderData, L e
 			throw new LevelLoaderException("Exception when loading entity: '" + entityName + "'.", e);
 		}
 
-		if(entity == null) {
-			throw new LevelLoaderException();
-		}
-
-		if(parent == null) {
-			this.mRootEntity = entity;
+		if (entity == null) {
+			if (BuildConfig.DEBUG) {
+				Debug.w("No '" + IEntity.class.getSimpleName() + "' created for entity name: '" + entityName + "'.");
+			}
 		} else {
-			parent.attachChild(entity);
-		}
+			if (parent == null) {
+				if (this.mRootEntity == null) {
+					this.mRootEntity = entity;
+				}
+			} else {
+				parent.attachChild(entity);
+			}
 
-		if(this.mEntityLoaderListener != null) {
-			this.mEntityLoaderListener.onEntityLoaded(entity, pAttributes);
+			if (this.mEntityLoaderListener != null) {
+				this.mEntityLoaderListener.onEntityLoaded(entity, pAttributes);
+			}
 		}
 
 		this.mParentEntityStack.addLast(entity);

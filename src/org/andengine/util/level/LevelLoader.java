@@ -18,7 +18,7 @@ import android.content.res.AssetManager;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @param <T>
  * @since 14:16:19 - 11.10.2010
@@ -42,7 +42,7 @@ public abstract class LevelLoader<T extends IEntityLoaderData, L extends IEntity
 	public LevelLoader() {
 
 	}
-	
+
 	public LevelLoader(final IEntityLoader<T> pDefaultEntityLoader) {
 		this.mDefaultEntityLoader = pDefaultEntityLoader;
 	}
@@ -68,7 +68,7 @@ public abstract class LevelLoader<T extends IEntityLoaderData, L extends IEntity
 
 	public void registerEntityLoader(final IEntityLoader<T> pEntityLoader) {
 		final String[] entityNames = pEntityLoader.getEntityNames();
-		for(int i = 0; i < entityNames.length; i++) {
+		for (int i = 0; i < entityNames.length; i++) {
 			final String entityName = entityNames[i];
 			this.mEntityLoaders.put(entityName, pEntityLoader);
 		}
@@ -106,7 +106,7 @@ public abstract class LevelLoader<T extends IEntityLoaderData, L extends IEntity
 
 	public R loadLevelFromStream(final InputStream pInputStream, final L pEntityLoaderListener) throws LevelLoaderException {
 		final T entityLoaderData = this.onCreateEntityLoaderData();
-		
+
 		return this.loadLevelFromStream(pInputStream, entityLoaderData, pEntityLoaderListener);
 	}
 

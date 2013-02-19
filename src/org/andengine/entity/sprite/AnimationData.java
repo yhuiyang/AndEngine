@@ -70,7 +70,7 @@ public class AnimationData implements IAnimationData {
 
 	/**
 	 * Animate specifics frames.
-	 * 
+	 *
 	 * @param pFrameDurations must have the same length as pFrames.
 	 * @param pFrames indices of the frames to animate.
 	 * @param pLoopCount
@@ -148,8 +148,8 @@ public class AnimationData implements IAnimationData {
 	public int calculateCurrentFrameIndex(final long pAnimationProgress) {
 		final long[] frameEnds = this.mFrameEndsInNanoseconds;
 		final int frameCount = this.mFrameCount;
-		for(int i = 0; i < frameCount; i++) {
-			if(frameEnds[i] > pAnimationProgress) {
+		for (int i = 0; i < frameCount; i++) {
+			if (frameEnds[i] > pAnimationProgress) {
 				return i;
 			}
 		}
@@ -207,14 +207,14 @@ public class AnimationData implements IAnimationData {
 	public void set(final long[] pFrameDurations, final int pFirstFrameIndex, final int pLastFrameIndex, final int pLoopCount) {
 		this.set(pFrameDurations, (pLastFrameIndex - pFirstFrameIndex) + 1, null, pFirstFrameIndex, pLoopCount);
 
-		if((pFirstFrameIndex + 1) > pLastFrameIndex) {
+		if ((pFirstFrameIndex + 1) > pLastFrameIndex) {
 			throw new IllegalArgumentException("An animation needs at least two tiles to animate between.");
 		}
 	}
 
 	/**
 	 * Animate specifics frames.
-	 * 
+	 *
 	 * @param pFrameDurations must have the same length as pFrames.
 	 * @param pFrames indices of the frames to animate.
 	 */
@@ -225,7 +225,7 @@ public class AnimationData implements IAnimationData {
 
 	/**
 	 * Animate specifics frames.
-	 * 
+	 *
 	 * @param pFrameDurations must have the same length as pFrames.
 	 * @param pFrames indices of the frames to animate.
 	 * @param pLoop
@@ -237,7 +237,7 @@ public class AnimationData implements IAnimationData {
 
 	/**
 	 * Animate specifics frames.
-	 * 
+	 *
 	 * @param pFrameDurations must have the same length as pFrames.
 	 * @param pFrames indices of the frames to animate.
 	 * @param pLoopCount
@@ -253,7 +253,7 @@ public class AnimationData implements IAnimationData {
 	}
 
 	private void set(final long[] pFrameDurations, final int pFrameCount, final int[] pFrames, final int pFirstFrameIndex, final int pLoopCount) {
-		if(pFrameDurations.length != pFrameCount) {
+		if (pFrameDurations.length != pFrameCount) {
 			throw new IllegalArgumentException("pFrameDurations does not equal pFrameCount!");
 		}
 
@@ -263,7 +263,7 @@ public class AnimationData implements IAnimationData {
 		this.mFirstFrameIndex = pFirstFrameIndex;
 		this.mLoopCount = pLoopCount;
 
-		if((this.mFrameEndsInNanoseconds == null) || (this.mFrameCount > this.mFrameEndsInNanoseconds.length)) {
+		if ((this.mFrameEndsInNanoseconds == null) || (this.mFrameCount > this.mFrameEndsInNanoseconds.length)) {
 			this.mFrameEndsInNanoseconds = new long[this.mFrameCount];
 		}
 

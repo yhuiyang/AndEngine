@@ -9,7 +9,7 @@ import org.andengine.util.modifier.ease.IEaseFunction;
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 14:51:03 - 03.09.2010
  */
@@ -63,7 +63,7 @@ public class ColorBackgroundModifier extends BaseTripleValueSpanModifier<IBackgr
 	}
 
 	@Override
-	public ColorBackgroundModifier deepCopy(){
+	public ColorBackgroundModifier deepCopy() {
 		return new ColorBackgroundModifier(this);
 	}
 

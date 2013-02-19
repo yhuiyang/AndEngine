@@ -19,9 +19,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * (c) 2010 Nicolas Gramlich 
+ * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
- * 
+ *
  * @author Nicolas Gramlich
  * @since 18:11:54 - 07.03.2011
  */
@@ -112,7 +112,7 @@ public final class ActivityUtils {
 			@Override
 			public void onPreExecute() {
 				this.mPD = ProgressDialog.show(pContext, pTitle, pMessage, true, pCancelable);
-				if(pCancelable) {
+				if (pCancelable) {
 					this.mPD.setOnCancelListener(new OnCancelListener() {
 						@Override
 						public void onCancel(final DialogInterface pDialogInterface) {
@@ -142,14 +142,14 @@ public final class ActivityUtils {
 					Debug.e("Error", e);
 				}
 
-				if(this.isCancelled()) {
+				if (this.isCancelled()) {
 					this.mException = new CancelledException();
 				}
 
-				if(this.mException == null) {
+				if (this.mException == null) {
 					pCallback.onCallback(result);
 				} else {
-					if(pExceptionCallback == null) {
+					if (pExceptionCallback == null) {
 						Debug.e("Error", this.mException);
 					} else {
 						pExceptionCallback.onCallback(this.mException);
@@ -160,7 +160,7 @@ public final class ActivityUtils {
 			}
 		}.execute((Void[]) null);
 	}
-	
+
 	public static final <T> void doProgressAsync(final Context pContext, final int pTitleResourceID, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback) {
 		ActivityUtils.doProgressAsync(pContext, pTitleResourceID, pIconResourceID, pCallable, pCallback, null);
 	}
@@ -218,14 +218,14 @@ public final class ActivityUtils {
 					/* Nothing. */
 				}
 
-				if(this.isCancelled()) {
+				if (this.isCancelled()) {
 					this.mException = new CancelledException();
 				}
 
-				if(this.mException == null) {
+				if (this.mException == null) {
 					pCallback.onCallback(result);
 				} else {
-					if(pExceptionCallback == null) {
+					if (pExceptionCallback == null) {
 						Debug.e("Error", this.mException);
 					} else {
 						pExceptionCallback.onCallback(this.mException);

@@ -16,7 +16,6 @@ import org.andengine.util.adt.color.Color;
 import org.andengine.util.math.MathUtils;
 
 import android.opengl.GLES20;
-import android.util.FloatMath;
 
 /**
  * (c) Zynga 2012
@@ -96,7 +95,7 @@ public class Gradient extends Shape {
 	 * 								If <code>false</code> the from and to color might exceed the bounds of the {@link Gradient} entity, depending on the angle/vector supplied.
 	 */
 	public void setGradientFitToBounds(final boolean pGradientFitToBounds) {
-		if(this.mGradientFitToBounds != pGradientFitToBounds) {
+		if (this.mGradientFitToBounds != pGradientFitToBounds) {
 			this.mGradientFitToBounds = pGradientFitToBounds;
 
 			this.onUpdateColor();
@@ -281,7 +280,7 @@ public class Gradient extends Shape {
 	 * @param pRed from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToRed(final float pRed) {
-		if(this.mToColor.setRedChecking(pRed)) { // TODO Is this check worth it?
+		if (this.mToColor.setRedChecking(pRed)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -290,7 +289,7 @@ public class Gradient extends Shape {
 	 * @param pGreen from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToGreen(final float pGreen) {
-		if(this.mToColor.setGreenChecking(pGreen)) { // TODO Is this check worth it?
+		if (this.mToColor.setGreenChecking(pGreen)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -299,7 +298,7 @@ public class Gradient extends Shape {
 	 * @param pBlue from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToBlue(final float pBlue) {
-		if(this.mToColor.setBlueChecking(pBlue)) { // TODO Is this check worth it?
+		if (this.mToColor.setBlueChecking(pBlue)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -308,7 +307,7 @@ public class Gradient extends Shape {
 	 * @param pAlpha from <code>0.0f</code> (transparent) to <code>1.0f</code> (opaque)
 	 */
 	public void setToAlpha(final float pAlpha) {
-		if(this.mToColor.setAlphaChecking(pAlpha)) { // TODO Is this check worth it?
+		if (this.mToColor.setAlphaChecking(pAlpha)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -319,7 +318,7 @@ public class Gradient extends Shape {
 	 * @param pBlue from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToColor(final float pRed, final float pGreen, final float pBlue) {
-		if(this.mToColor.setChecking(pRed, pGreen, pBlue)) { // TODO Is this check worth it?
+		if (this.mToColor.setChecking(pRed, pGreen, pBlue)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -331,13 +330,13 @@ public class Gradient extends Shape {
 	 * @param pAlpha from <code>0.0f</code> (transparent) to <code>1.0f</code> (opaque)
 	 */
 	public void setToColor(final float pRed, final float pGreen, final float pBlue, final float pAlpha) {
-		if(this.mToColor.setChecking(pRed, pGreen, pBlue, pAlpha)) { // TODO Is this check worth it?
+		if (this.mToColor.setChecking(pRed, pGreen, pBlue, pAlpha)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
 
 	public void setToColor(final Color pColor) {
-		if(this.mToColor.setChecking(pColor)) { // TODO Is this check worth it?
+		if (this.mToColor.setChecking(pColor)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -370,12 +369,12 @@ public class Gradient extends Shape {
 	}
 
 	/**
-	 * @param pGradientAngle in degrees. <code>0</code> is a 'left-to-right', <code>90</code> is 'top-to-bottom', ... 
+	 * @param pGradientAngle in degrees. <code>0</code> is a 'left-to-right', <code>90</code> is 'top-to-bottom', ...
 	 */
 	public void setGradientAngle(final float pGradientAngle) {
 		final float angleInRad = MathUtils.degToRad(pGradientAngle);
 
-		this.setGradientVector(FloatMath.cos(angleInRad), FloatMath.sin(angleInRad));
+		this.setGradientVector((float)Math.cos(angleInRad), (float)Math.sin(angleInRad));
 	}
 
 	public void setGradientColor(final float pFromRed, final float pToRed, final float pFromGreen, final float pToGreen, final float pFromBlue, final float pToBlue) {
@@ -447,7 +446,7 @@ public class Gradient extends Shape {
 
 	@Override
 	protected void draw(final GLState pGLState, final Camera pCamera) {
-		if(this.mGradientDitherEnabled) {
+		if (this.mGradientDitherEnabled) {
 			final boolean wasDitherEnabled = pGLState.enableDither();
 
 			this.mGradientVertexBufferObject.draw(GLES20.GL_TRIANGLE_STRIP, Gradient.VERTICES_PER_RECTANGLE);
