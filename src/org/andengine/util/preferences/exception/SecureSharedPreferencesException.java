@@ -1,56 +1,19 @@
-package org.andengine.util.adt.data.operator;
+package org.andengine.util.preferences.exception;
+
+import org.andengine.util.exception.AndEngineRuntimeException;
 
 /**
- * (c) Zynga 2012
+ * (c) 2013 Nicolas Gramlich
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
- * @since 14:24:15 - 02.02.2012
+ * @since 20:09:38 - 13.04.2013
  */
-public enum LongOperator {
-	// ===========================================================
-	// Elements
-	// ===========================================================
-
-	EQUALS() {
-		@Override
-		public boolean check(final long pLongA, final long pLongB) {
-			return pLongA == pLongB;
-		}
-	},
-	NOT_EQUALS() {
-		@Override
-		public boolean check(final long pLongA, final long pLongB) {
-			return pLongA != pLongB;
-		}
-	},
-	LESS_THAN() {
-		@Override
-		public boolean check(final long pLongA, final long pLongB) {
-			return pLongA < pLongB;
-		}
-	},
-	LESS_OR_EQUAL_THAN() {
-		@Override
-		public boolean check(final long pLongA, final long pLongB) {
-			return pLongA <= pLongB;
-		}
-	},
-	MORE_THAN() {
-		@Override
-		public boolean check(final long pLongA, final long pLongB) {
-			return pLongA > pLongB;
-		}
-	},
-	MORE_OR_EQUAL_THAN() {
-		@Override
-		public boolean check(final long pLongA, final long pLongB) {
-			return pLongA >= pLongB;
-		}
-	};
-
+public class SecureSharedPreferencesException extends AndEngineRuntimeException {
 	// ===========================================================
 	// Constants
 	// ===========================================================
+
+	private static final long serialVersionUID = 5683854473467471982L;
 
 	// ===========================================================
 	// Fields
@@ -60,6 +23,22 @@ public enum LongOperator {
 	// Constructors
 	// ===========================================================
 
+	public SecureSharedPreferencesException() {
+
+	}
+
+	public SecureSharedPreferencesException(final String pMessage) {
+		super(pMessage);
+	}
+
+	public SecureSharedPreferencesException(final Throwable pThrowable) {
+		super(pThrowable);
+	}
+
+	public SecureSharedPreferencesException(final String pMessage, final Throwable pThrowable) {
+		super(pMessage, pThrowable);
+	}
+
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
@@ -67,8 +46,6 @@ public enum LongOperator {
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
-
-	public abstract boolean check(final long pLongA, final long pLongB);
 
 	// ===========================================================
 	// Methods
