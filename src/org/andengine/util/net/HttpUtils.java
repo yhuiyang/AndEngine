@@ -1,17 +1,25 @@
-package org.andengine.util.experiment.exception;
+package org.andengine.util.net;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 
 /**
  * (c) 2013 Nicolas Gramlich
- * 
+ *
  * @author Nicolas Gramlich
- * @since 08:25:34 - 22.03.2013
+ * @since 19:20:32 - 03.05.2013
  */
-public class ExperimentTypeException extends ExperimentException {
+public final class HttpUtils {
 	// ===========================================================
 	// Constants
 	// ===========================================================
-
-	private static final long serialVersionUID = 8937289172679121788L;
 
 	// ===========================================================
 	// Fields
@@ -21,20 +29,8 @@ public class ExperimentTypeException extends ExperimentException {
 	// Constructors
 	// ===========================================================
 
-	public ExperimentTypeException() {
-		super();
-	}
+	private HttpUtils() {
 
-	public ExperimentTypeException(final String pMessage) {
-		super(pMessage);
-	}
-
-	public ExperimentTypeException(final Throwable pThrowable) {
-		super(pThrowable);
-	}
-
-	public ExperimentTypeException(final String pMessage, final Throwable pThrowable) {
-		super(pMessage, pThrowable);
 	}
 
 	// ===========================================================
@@ -42,14 +38,29 @@ public class ExperimentTypeException extends ExperimentException {
 	// ===========================================================
 
 	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
+	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
+	public static List<NameValuePair> convertParametersToNameValuePairs(final Map<String, String> pParameters) {
+		final List<NameValuePair> result = new ArrayList<NameValuePair>();
+
+		for (final Entry<String, String> entry : pParameters.entrySet()) {
+			result.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+		}
+
+		return result;
+	}
+
+	public static boolean isHttpStatusCodeSuccess(final int pHttpStatusCode) {
+		return pHttpStatusCode >= HttpStatus.SC_OK && pHttpStatusCode < HttpStatus.SC_MULTIPLE_CHOICES;
+	}
+
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
+
 }
