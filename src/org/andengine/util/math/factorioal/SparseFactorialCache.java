@@ -1,18 +1,21 @@
-package org.andengine.util.exception;
+package org.andengine.util.math.factorioal;
+
+import android.util.SparseIntArray;
 
 /**
- * (c) 2010 Nicolas Gramlich
- * (c) 2011 Zynga Inc.
+ * (c) 2013 Nicolas Gramlich
  *
  * @author Nicolas Gramlich
- * @since 20:17:14 - 04.03.2011
+ * @since 21:37:15 - 09.06.2013
  */
-public class BluetoothException extends AndEngineException {
+public class SparseFactorialCache implements IFactorialProvider {
 	// ===========================================================
 	// Constants
 	// ===========================================================
 
-	private static final long serialVersionUID = -8552336984977745238L;
+	private static SparseFactorialCache INSTANCE;
+
+	private final SparseIntArray mCache = new SparseIntArray();
 
 	// ===========================================================
 	// Fields
@@ -22,20 +25,15 @@ public class BluetoothException extends AndEngineException {
 	// Constructors
 	// ===========================================================
 
-	public BluetoothException() {
+	private SparseFactorialCache() {
 
 	}
 
-	public BluetoothException(final String pMessage) {
-		super(pMessage);
-	}
-
-	public BluetoothException(final Throwable pThrowable) {
-		super(pThrowable);
-	}
-
-	public BluetoothException(final String pMessage, final Throwable pThrowable) {
-		super(pMessage, pThrowable);
+	public static SparseFactorialCache getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new SparseFactorialCache();
+		}
+		return INSTANCE;
 	}
 
 	// ===========================================================
@@ -49,6 +47,18 @@ public class BluetoothException extends AndEngineException {
 	// ===========================================================
 	// Methods
 	// ===========================================================
+
+	@Override
+	public int factorial(final int n) {
+		int result = this.mCache.get(n);
+		if (result != 0) {
+			return result;
+		} else {
+			result = IterativeFactorialProvider.getInstance().factorial(n);
+			this.mCache.put(n, result);
+			return result;
+		}
+	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes

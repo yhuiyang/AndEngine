@@ -101,7 +101,7 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		if (this.mGameCreated) {
 			this.onReloadResources();
 
-			if (this.mGamePaused && this.mGameCreated) {
+			if (this.mGamePaused && this.mGameCreated && !this.isFinishing()) {
 				this.onResumeGame();
 			}
 		} else {
@@ -230,7 +230,7 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 	public synchronized void onWindowFocusChanged(final boolean pHasWindowFocus) {
 		super.onWindowFocusChanged(pHasWindowFocus);
 
-		if (pHasWindowFocus && this.mGamePaused && this.mGameCreated) {
+		if (pHasWindowFocus && this.mGamePaused && this.mGameCreated && !this.isFinishing()) {
 			this.onResumeGame();
 		}
 	}
@@ -372,7 +372,9 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		BaseGameActivity.this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				BaseGameActivity.this.onResumeGame();
+				if (!BaseGameActivity.this.isFinishing()) {
+					BaseGameActivity.this.onResumeGame();
+				}
 			}
 		});
 	}

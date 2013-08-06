@@ -1,18 +1,18 @@
-package org.andengine.util.exception;
+package org.andengine.util.math.factorioal;
+
 
 /**
- * (c) 2010 Nicolas Gramlich
- * (c) 2011 Zynga Inc.
+ * (c) 2013 Nicolas Gramlich
  *
  * @author Nicolas Gramlich
- * @since 20:17:14 - 04.03.2011
+ * @since 21:37:15 - 09.06.2013
  */
-public class BluetoothException extends AndEngineException {
+public class IterativeFactorialProvider implements IFactorialProvider {
 	// ===========================================================
 	// Constants
 	// ===========================================================
 
-	private static final long serialVersionUID = -8552336984977745238L;
+	private static IterativeFactorialProvider INSTANCE;
 
 	// ===========================================================
 	// Fields
@@ -22,20 +22,15 @@ public class BluetoothException extends AndEngineException {
 	// Constructors
 	// ===========================================================
 
-	public BluetoothException() {
+	private IterativeFactorialProvider() {
 
 	}
 
-	public BluetoothException(final String pMessage) {
-		super(pMessage);
-	}
-
-	public BluetoothException(final Throwable pThrowable) {
-		super(pThrowable);
-	}
-
-	public BluetoothException(final String pMessage, final Throwable pThrowable) {
-		super(pMessage, pThrowable);
+	public static IterativeFactorialProvider getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new IterativeFactorialProvider();
+		}
+		return INSTANCE;
 	}
 
 	// ===========================================================
@@ -49,6 +44,15 @@ public class BluetoothException extends AndEngineException {
 	// ===========================================================
 	// Methods
 	// ===========================================================
+
+	@Override
+	public int factorial(final int n) {
+		int result = 1;
+		for (int i = 1; i <= n; i++) {
+			result *= i;
+		}
+		return result;
+	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes
