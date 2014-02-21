@@ -154,7 +154,7 @@ public final class FileUtils {
 	}
 
 	public static String getAbsolutePathOnInternalStorage(final Context pContext, final String pFilePath) {
-		return pContext.getFilesDir().getAbsolutePath() + pFilePath;
+		return pContext.getFilesDir().getAbsolutePath() + "/" + pFilePath;
 	}
 
 	public static String getAbsolutePathOnExternalStorage(final String pFilePath) {
