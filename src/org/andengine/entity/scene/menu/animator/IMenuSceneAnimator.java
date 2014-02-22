@@ -1,6 +1,7 @@
 package org.andengine.entity.scene.menu.animator;
 
 import org.andengine.entity.scene.menu.MenuScene;
+import org.andengine.entity.scene.menu.animator.MenuSceneAnimator.MenuItemOrientation;
 import org.andengine.util.adt.align.HorizontalAlign;
 import org.andengine.util.adt.align.VerticalAlign;
 
@@ -30,6 +31,8 @@ public interface IMenuSceneAnimator {
 	public void setHorizontalAlign(final HorizontalAlign pHorizontalAlign);
 	public VerticalAlign getVerticalAlign();
 	public void setVerticalAlign(final VerticalAlign pVerticalAlign);
+	public MenuItemOrientation getMenuItemOrientation();
+	public void setMenuItemOrientation(final MenuItemOrientation pMenuItemOrientation);
 
 	public void buildMenuSceneAnimations(final MenuScene pMenuScene);
 	public void resetMenuSceneAnimations(final MenuScene pMenuScene);

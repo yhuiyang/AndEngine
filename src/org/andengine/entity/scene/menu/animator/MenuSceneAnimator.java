@@ -19,6 +19,7 @@ public abstract class MenuSceneAnimator implements IMenuSceneAnimator {
 
 	private static final HorizontalAlign HORIZONTALALIGN_DEFAULT = HorizontalAlign.CENTER;
 	private static final VerticalAlign VERTICALALIGN_DEFAULT = VerticalAlign.CENTER;
+	private static final MenuItemOrientation MENUITEMORIENTATION_DEFAULT = MenuItemOrientation.VERTICAL;
 	private static final float SPACING_DEFAULT = 1.0f;
 	private static final float OFFSET_X_DEFAULT = 0.0f;
 	private static final float OFFSET_Y_DEFAULT = 0.0f;
@@ -35,6 +36,9 @@ public abstract class MenuSceneAnimator implements IMenuSceneAnimator {
 
 	protected float mMenuItemSpacing = MenuSceneAnimator.SPACING_DEFAULT;
 	protected float mOverallHeight;
+	protected float mOverallWidth;
+
+	protected MenuItemOrientation mMenuItemOrientation = MenuSceneAnimator.MENUITEMORIENTATION_DEFAULT;
 
 	// ===========================================================
 	// Constructors
@@ -103,6 +107,16 @@ public abstract class MenuSceneAnimator implements IMenuSceneAnimator {
 		this.mVerticalAlign = pVerticalAlign;
 	}
 
+	@Override
+	public MenuItemOrientation getMenuItemOrientation() {
+		return this.mMenuItemOrientation;
+	}
+
+	@Override
+	public void setMenuItemOrientation(final MenuItemOrientation pMenuItemOrientation) {
+		this.mMenuItemOrientation = pMenuItemOrientation;
+	}
+
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
@@ -112,7 +126,7 @@ public abstract class MenuSceneAnimator implements IMenuSceneAnimator {
 
 	@Override
 	public void buildMenuSceneAnimations(final MenuScene pMenuScene) {
-		this.updateOverallHeight(pMenuScene);
+		this.updateOverallDimension(pMenuScene);
 
 		final int menuItemCount = pMenuScene.getMenuItemCount();
 
@@ -148,9 +162,10 @@ public abstract class MenuSceneAnimator implements IMenuSceneAnimator {
 		final IMenuItem menuItem = pMenuScene.getMenuItem(pIndex);
 		final float menuItemWidth = menuItem.getWidth();
 
-		/* Determine horizontal position. */
-		final float x;
-		switch (this.mHorizontalAlign) {
+		if (this.mMenuItemOrientation == MenuItemOrientation.VERTICAL) {
+			/* Determine horizontal position. */
+			final float x;
+			switch (this.mHorizontalAlign) {
 			case LEFT:
 				x = menuItemWidth * 0.5f;
 				break;
@@ -162,19 +177,41 @@ public abstract class MenuSceneAnimator implements IMenuSceneAnimator {
 				break;
 			default:
 				throw new IllegalArgumentException("Unexpected " + HorizontalAlign.class.getSimpleName() + " with value: '" + this.mHorizontalAlign + "'.");
-		}
+			}
+			return x + this.mOffsetX;
+		} else {
+			/* Prepare horizontal position */
+			float baseX;
+			switch (this.mHorizontalAlign) {
+			case LEFT:
+				baseX = 0;
+				break;
+			case CENTER:
+				baseX = (0.5f * menuSceneWidth) - (this.mOverallWidth * 0.5f);
+				break;
+			case RIGHT:
+				baseX = menuSceneWidth - this.mOverallWidth;
+				break;
+			default:
+				throw new IllegalArgumentException("Unexpected " + HorizontalAlign.class.getSimpleName() + " with value: '" + this.mHorizontalAlign + "'.");
+			}
+			/* Determine horizontal position */
+			final float x = baseX + (menuItemWidth * 0.5f) + (pIndex * (menuItemWidth + this.mMenuItemSpacing));
 
-		return x + this.mOffsetX;
+			return x + this.mOffsetX;
+		}
 	}
 
 	protected float getMenuItemY(final MenuScene pMenuScene, final int pIndex) {
 		final float menuSceneHeight = pMenuScene.getHeight();
 
 		final IMenuItem menuItem = pMenuScene.getMenuItem(pIndex);
+		final float menuItemHeight = menuItem.getHeight();
 
-		/* Prepare vertical position. */
-		float baseY;
-		switch (this.mVerticalAlign) {
+		if (this.mMenuItemOrientation == MenuItemOrientation.VERTICAL) {
+			/* Prepare vertical position. */
+			float baseY;
+			switch (this.mVerticalAlign) {
 			case TOP:
 				baseY = menuSceneHeight;
 				break;
@@ -186,29 +223,61 @@ public abstract class MenuSceneAnimator implements IMenuSceneAnimator {
 				break;
 			default:
 				throw new IllegalArgumentException("Unexpected " + VerticalAlign.class.getSimpleName() + " with value: '" + this.mVerticalAlign + "'.");
+			}
+
+			/* Determine vertical position. */
+			final float y = baseY - (menuItemHeight * 0.5f) - (pIndex * (menuItemHeight + this.mMenuItemSpacing));
+
+			return y + this.mOffsetY;
+		} else {
+			/* Determine vertical position. */
+			final float y;
+			switch (this.mVerticalAlign) {
+			case TOP:
+				y = menuSceneHeight - (menuItemHeight * 0.5f);
+				break;
+			case CENTER:
+				y = menuSceneHeight * 0.5f;
+				break;
+			case BOTTOM:
+				y = menuItemHeight * 0.5f;
+				break;
+			default:
+				throw new IllegalArgumentException("Unexpected " + VerticalAlign.class.getSimpleName() + " with value: " + this.mVerticalAlign + "'.");
+			}
+			return y + this.mOffsetY;
 		}
-
-		final float menuItemHeight = menuItem.getHeight();
-
-		/* Determine vertical position. */
-		final float y = baseY - (menuItemHeight * 0.5f) - (pIndex * (menuItemHeight + this.mMenuItemSpacing));
-
-		return y + this.mOffsetY;
 	}
 
-	private void updateOverallHeight(final MenuScene pMenuScene) {
+	private void updateOverallDimension(final MenuScene pMenuScene) {
 		final int menuItemCount = pMenuScene.getMenuItemCount();
 
 		float overallHeight = 0;
+		float overallWidth = 0;
 		for (int i = menuItemCount - 1; i >= 0; i--) {
 			final IMenuItem menuItem = pMenuScene.getMenuItem(i);
-			overallHeight += menuItem.getHeight();
+			if (this.mMenuItemOrientation == MenuItemOrientation.VERTICAL) {
+				overallHeight += menuItem.getHeight();
+				overallWidth = Math.max(overallWidth, menuItem.getWidth());
+			} else {
+				overallHeight = Math.max(overallHeight, menuItem.getHeight());
+				overallWidth += menuItem.getWidth();
+			}
 		}
 
-		this.mOverallHeight = overallHeight + ((menuItemCount - 1) * this.mMenuItemSpacing);
+		if (this.mMenuItemOrientation == MenuItemOrientation.VERTICAL) {
+			this.mOverallHeight = overallHeight + ((menuItemCount - 1) * this.mMenuItemSpacing);
+			this.mOverallWidth = overallWidth;
+		} else {
+			this.mOverallHeight = overallHeight;
+			this.mOverallWidth = overallWidth + ((menuItemCount - 1) * this.mMenuItemSpacing);
+		}
 	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
+	public enum MenuItemOrientation {
+		VERTICAL, HORIZONTAL
+	};
 }
